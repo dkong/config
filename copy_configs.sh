@@ -5,3 +5,6 @@ do
 	cp ~/$filename $filename
 done
 
+git commit -a 
+git push
+
