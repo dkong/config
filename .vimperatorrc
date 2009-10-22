@@ -19,3 +19,6 @@ source! ~/.vimperatorrc.local
 "No sounds
 :set vb
 
+:hi -a StatusLine font-size: 140%;
+:hi -a Normal font-size: 125%;
+:hi -a TabText font-size: 105%;

@@ -5,6 +5,9 @@ do
 	cp ~/$filename $filename
 done
 
-git commit -a 
-git push
+if [ "$1" = "-c" ]
+then
+	git commit -a -m "Latest configs"
+	git push
+fi
 
