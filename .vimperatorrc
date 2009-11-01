@@ -21,4 +21,4 @@ source! ~/.vimperatorrc.local
 
 :hi -a StatusLine font-size: 140%;
 :hi -a Normal font-size: 125%;
-:hi -a TabText font-size: 105%;
+:hi -a TabText font-size: 120;
