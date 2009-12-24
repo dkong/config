@@ -7,8 +7,8 @@ alias e="exit"
 alias sb="source ~/.bashrc"
 alias sp="source ~/dev/pylons/mydevenv/bin/activate"
 alias gs="git status"
-alias gd="git diff"
-alias gdd="git diff --cached"
+alias gd="git diff --color"
+alias gdd="git diff --cached --color"
 alias h="history | tail"
 
 export PS1="\[\e[31;1m\][\t]\[\e[37;1m\]\w$ \[\e[0m\]"
@@ -19,3 +19,9 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagahad
 
 set -o vi
+
+# Make bash append rather than overwrite the history on disk
+shopt -s histappend
+
+# Whenever displaying the prompt, write the previous line to disk
+PROMPT_COMMAND='history -a'

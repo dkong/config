@@ -1,4 +1,4 @@
-filenames=".bash_profile .bashrc .inputrc .vimperatorrc .vimrc"
+filenames=".bash_profile .bashrc .inputrc .vimperatorrc .vimrc .gitconfig"
 
 for filename in $filenames 
 do
