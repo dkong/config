@@ -7,15 +7,18 @@ alias e="exit"
 alias sb="source ~/.bashrc"
 alias sp="source ~/dev/pylons/mydevenv/bin/activate"
 alias gs="git status"
+alias gsi="git ls-files --others -i --exclude-standard"
 alias gd="git diff --color"
 alias gdd="git diff --cached --color"
 alias gc="git commit -v"
+alias gl="git log"
 alias h="history | tail"
 alias ux="ushare -x"
 
 export PS1="\[\e[31;1m\][\t]\[\e[37;1m\]\w$ \[\e[0m\]"
 export PATH="/Users/darakong/dev/love_app/love.app/Contents/MacOS:/opt/local/bin:/usr/local/soylatte16-amd64-1.0.3/bin:/Users/dkong/dara:$PATH"
 export JAVA_HOME="/usr/local/soylatte16-amd64-1.0.3" 
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagahad
