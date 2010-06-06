@@ -16,13 +16,16 @@ alias gd="git diff --color"
 alias gdd="git diff --cached --color"
 alias gc="git commit -v"
 alias gl="git log"
+alias ga="git add"
 
 # SVN shortcuts
 alias ss="svn st"
-alias sd="svn diff | less"
+alias sd="svn diff"
+#alias sd="svn diff | less"
 alias sc="svn ci"
 alias sl="svn log -l5 | less"
 alias sr="svn revert"
+alias su="svn update"
 
 export PS1="\[\e[31;1m\][\t]\[\e[37;1m\]\w$ \[\e[0m\]"
 export PATH="/Users/darakong/dev/love_app/love.app/Contents/MacOS:/opt/local/bin:/usr/local/soylatte16-amd64-1.0.3/bin:/Users/dkong/dara:~/dev/jamplus/bin/macosxx64:$PATH"
