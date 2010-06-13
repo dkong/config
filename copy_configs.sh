@@ -5,7 +5,9 @@ do
 	cp ~/$filename $filename
 done
 
-cp ~/.subversion/config .subversion_config
+cp ~/.vim/after/ftplugin/* .vim/after/ftplugin/
+
+cp ~/.subversion/config .subversion/config
 
 if [ "$1" = "-c" ]
 then

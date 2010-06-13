@@ -35,8 +35,8 @@ filetype plugin indent on
 autocmd FileType python set complete+=k~/.vim/syntax/python3.0.vim isk+=.,(
 
 " Execute file being edited with <Shift> + e:
-map <buffer> <S-e> :w<CR>:~/usr/bin/env python % <CR>
-nnoremap <F6> :w<CR>:!g++ % && ./a.out<CR>
+"map <buffer> <S-e> :w<CR>:~/usr/bin/env python % <CR>
+"nnoremap <F6> :w<CR>:!g++ % && ./a.out<CR>
 
 syntax on
 

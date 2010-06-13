@@ -17,6 +17,7 @@ alias gdd="git diff --cached --color"
 alias gc="git commit -v"
 alias gl="git log"
 alias ga="git add"
+alias gp="git push"
 
 # SVN shortcuts
 alias ss="svn st"
@@ -30,7 +31,7 @@ alias su="svn update"
 export PS1="\[\e[31;1m\][\t]\[\e[37;1m\]\w$ \[\e[0m\]"
 export PATH="/Users/darakong/dev/love_app/love.app/Contents/MacOS:/opt/local/bin:/usr/local/soylatte16-amd64-1.0.3/bin:/Users/dkong/dara:~/dev/jamplus/bin/macosxx64:$PATH"
 export JAVA_HOME="/usr/local/soylatte16-amd64-1.0.3" 
-export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/Library/Frameworks/Mono.framework/Versions/2.6.4/lib/pkgconfig"
 export SVN_EDITOR="vi"
 
 export CLICOLOR=1
