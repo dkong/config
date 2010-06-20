@@ -1,1 +1,1 @@
-map <buffer> <S-e> :w<CR>:!gcc % && ./a.out<CR>
+nnoremap <F6> :w<CR>:!gcc % && ./a.out<CR>

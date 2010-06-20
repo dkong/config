@@ -48,3 +48,5 @@ set tags=./tags;
 
 let Tlist_Exit_OnlyWindow = 1
 
+set iskeyword=48-57,_,192-255
+set iskeyword-=40-41

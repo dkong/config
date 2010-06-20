@@ -33,6 +33,7 @@ export PATH="/Users/darakong/dev/love_app/love.app/Contents/MacOS:/opt/local/bin
 export JAVA_HOME="/usr/local/soylatte16-amd64-1.0.3" 
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/Library/Frameworks/Mono.framework/Versions/2.6.4/lib/pkgconfig"
 export SVN_EDITOR="vi"
+export PYTHONPATH=$PYTHONPATH:~/lib/python
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagahad

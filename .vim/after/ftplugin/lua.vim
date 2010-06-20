@@ -1,2 +1,1 @@
-map <buffer> <S-e> :w<CR>:!/usr/local/bin/lua %<CR>
-
+nnoremap <F6> :w<CR>:!/usr/local/bin/lua %<CR>
