@@ -27,6 +27,8 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
 " 
 nnoremap <F8> :TlistToggle<CR>
+nnoremap <F4> :w<CR>
+nnoremap <F5> :!!<CR>
 
 " proper indentation and formatting
 filetype plugin indent on
@@ -47,3 +49,5 @@ map <C-j> :FuzzyFinderTextMate<CR>
 set tags=./tags;
 
 let Tlist_Exit_OnlyWindow = 1
+
+set iskeyword=(,),[,]

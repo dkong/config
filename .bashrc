@@ -1,3 +1,5 @@
+source ~/.git-completion.bash
+
 alias ls="ls -G"
 alias l="ls -Gla"
 alias g="grep --exclude=\*.svn\* -r -n --color=auto"
@@ -18,6 +20,8 @@ alias gc="git commit -v"
 alias gl="git log"
 alias ga="git add"
 alias gp="git push"
+alias gpo="git push origin master"
+alias gu="git reset HEAD"
 
 # SVN shortcuts
 alias ss="svn st"
@@ -26,10 +30,12 @@ alias sd="svn diff"
 alias sc="svn ci"
 alias sl="svn log -l5 | less"
 alias sr="svn revert"
-alias su="svn update"
+alias svu="svn update"
 
+export MAGICK_HOME=/Users/darakong/Downloads/ImageMagick-6.6.3
 export PS1="\[\e[31;1m\][\t]\[\e[37;1m\]\w$ \[\e[0m\]"
-export PATH="/Users/darakong/dev/love/bin/love.app/Contents/MacOS:/opt/local/bin:/usr/local/soylatte16-amd64-1.0.3/bin:/Users/dkong/dara:~/dev/jamplus/bin/macosxx64:$PATH"
+export PATH="/Users/darakong/dev/love/bin/love.app/Contents/MacOS:/opt/local/bin:/usr/local/soylatte16-amd64-1.0.3/bin:/Users/dkong/dara:~/dev/jamplus/bin/macosxx64:~/dev/android/android-sdk-mac_86/tools:$MAGICK_HOME/bin:$PATH"
+export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
 export JAVA_HOME="/usr/local/soylatte16-amd64-1.0.3" 
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/Library/Frameworks/Mono.framework/Versions/2.6.4/lib/pkgconfig"
 export SVN_EDITOR="vi"
