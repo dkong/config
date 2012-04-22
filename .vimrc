@@ -11,7 +11,7 @@ set bs=2		"Backspace over everything in insert mode
 set shiftwidth=4	"Tabs under smart indent
 set autoindent
 set smarttab
-set expandtab
+set expandtab 	"Use literal tabs instead of spaces
 
 "Visual
 set showmatch		" Show matching brackets
@@ -28,13 +28,15 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 " 
 nnoremap <F8> :TlistToggle<CR>
 nnoremap <F4> :w<CR>
-nnoremap <F5> :!!<CR>
+nnoremap <F5> :!/Users/dkong/loyalize/Clients/bin/build-social<CR>
+
+map <F3> :NERDTreeToggle<CR>
 
 " proper indentation and formatting
 filetype plugin indent on
 
 " 
-autocmd FileType python set complete+=k~/.vim/syntax/python3.0.vim isk+=.,(
+autocmd FileType python set complete+=k~/.vim/syntax/python3.0.vim
 
 " Execute file being edited with <Shift> + e:
 "map <buffer> <S-e> :w<CR>:~/usr/bin/env python % <CR>
@@ -48,6 +50,19 @@ map <C-j> :FuzzyFinderTextMate<CR>
 
 set tags=./tags;
 
-let Tlist_Exit_OnlyWindow = 1
+let Tlist_Exit_OnlyWindow=1
 
-set iskeyword=(,),[,]
+set listchars=tab:>-,eol:$,trail:.,extends:#
+
+"set iskeyword-={,},[,],(,)
+"
+:set hidden
+
+nmap <silent> <C-N> :cn<CR>zv
+nmap <silent> <C-P> :cp<CR>zv
+
+:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+:nnoremap <Leader>r :%s/\<<C-r><C-w>\>/this.<C-r><C-w>
+:nnoremap <Leader>f :Ack "<C-r><C-w>" public
+
+match Todo /\s\+$/
