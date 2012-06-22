@@ -26,11 +26,7 @@ set vb
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
 " 
-nnoremap <F8> :TlistToggle<CR>
 nnoremap <F4> :w<CR>
-nnoremap <F5> :!/Users/dkong/loyalize/Clients/bin/build-social<CR>
-
-map <F3> :NERDTreeToggle<CR>
 
 " proper indentation and formatting
 filetype plugin indent on
@@ -50,8 +46,6 @@ map <C-j> :FuzzyFinderTextMate<CR>
 
 set tags=./tags;
 
-let Tlist_Exit_OnlyWindow=1
-
 set listchars=tab:>-,eol:$,trail:.,extends:#
 
 "set iskeyword-={,},[,],(,)
@@ -61,8 +55,27 @@ set listchars=tab:>-,eol:$,trail:.,extends:#
 nmap <silent> <C-N> :cn<CR>zv
 nmap <silent> <C-P> :cp<CR>zv
 
-:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
-:nnoremap <Leader>r :%s/\<<C-r><C-w>\>/this.<C-r><C-w>
+:nnoremap <Leader>r :%s/\<<C-r><C-w>\>/
 :nnoremap <Leader>f :Ack "<C-r><C-w>" public
 
 match Todo /\s\+$/
+
+set laststatus=2
+
+set statusline=
+set statusline +=%1*\ %n\ %*            "buffer number
+set statusline +=%4*\ %<%F\ %*            "full path
+set statusline +=%6*%m%*                "modified flag
+set statusline +=%5*%{&ff}\ %*          "file format
+set statusline +=%3*%y%*                "file type
+set statusline +=%1*%=%5l%*             "current line
+set statusline +=%2*/%L%*               "total lines
+set statusline +=%1*%4v\ %*             "virtual column number
+set statusline +=%2*%P\ %*              "percent through file
+
+hi User1 ctermfg=yellow ctermbg=black
+hi User2 ctermfg=magenta ctermbg=black
+hi User3 ctermfg=gray ctermbg=black
+hi User4 ctermfg=white ctermbg=black
+hi User5 ctermfg=lightblue ctermbg=black
+hi User6 ctermfg=red ctermbg=black
