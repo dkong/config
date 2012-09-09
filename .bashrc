@@ -3,7 +3,6 @@ source ~/.git-completion.bash
 alias ls="ls -G"
 alias l="ls -Gla"
 alias g="grep --exclude=\*.svn\* -r -n --color=auto"
-alias f="find . -name"
 alias d="du -sh"
 alias e="exit"
 alias sb="source ~/.bashrc"
@@ -14,10 +13,19 @@ alias a="ack --smart-case"
 alias ajs="ack --smart-case --js"
 alias acss="ack --smart-case --css"
 alias ahtml="ack --smart-case --html"
-alias v="vim"
+alias v="~/Downloads/MacVim-snapshot-64/mvim -v"
 alias vr="vim -R"
 alias pa="ps aux | grep"
 alias u="cd .."
+alias ipp='ifconfig | grep "inet 192"'
+alias s='s3cmd'
+
+alias cdt="cd ~/loyalize/Clients"
+alias cdg="cd ~/loyalize/GameServer"
+alias cds="cd ~/loyalize"
+alias cdf="cd ~/fx"
+alias cdn="cd ~/loyalize/nob"
+alias cdp="cd ~/loyalize/Puppet/puppet/files/opt/loyalize/deploy"
 
 # Git shortcuts
 alias gs="git status"
@@ -29,7 +37,7 @@ alias gdd="git diff --cached --color"
 alias gc="git commit -v"
 alias gl="git log"
 alias glf="git log --follow"
-alias gll='git log --pretty=format:"%h %ad | %s [%an]" --date=local'
+alias gll='git log --pretty=format:"%Cred%h%Creset %C(white)%ad%Creset | %s %C(cyan)[%an]%Creset" --date=local'
 alias gld="git log --"
 alias ga="git add"
 alias gp="git push origin HEAD"
@@ -52,22 +60,12 @@ alias gitpatch='git format-patch'
 alias gsh='git show'
 alias gcp='git cherry-pick'
 
-complete -o bashdefault -o default -o nospace -F _git_diff gd
-complete -o bashdefault -o default -o nospace -F _git_commit gc
-complete -o bashdefault -o default -o nospace -F _git_log gl
-complete -o bashdefault -o default -o nospace -F _git_add ga
-complete -o bashdefault -o default -o nospace -F _git_checkout gco
-complete -o bashdefault -o default -o nospace -F _git_push gp
-complete -o bashdefault -o default -o nospace -F _git_pull gpu
-complete -o bashdefault -o default -o nospace -F _git_branch gb
-complete -o bashdefault -o default -o nospace -F _git_stash gt
-
 function f() {
     if [ "$2" ]
     then
-        find "$2" -iname "$1"
+        find "$2" -name .git -prune -o -name "$1" -print
     else
-        find . -iname "$1"
+        find . -name .git -prune -o -name "$1" -print
     fi
 }
 
@@ -98,9 +96,16 @@ function glag() {
     fi
 }
 
-function sshh() {
-ssh dara@$1.$2.loyalize.tv
+function lt() {
+    perl -e "print scalar(localtime($1))"
+    echo
 }
+
+function ut() {
+    perl -e "print scalar(gmtime($1))"
+    echo
+}
+
 
 # SVN shortcuts
 alias ss="svn st"
@@ -111,14 +116,7 @@ alias sl="svn log -l5 | less"
 alias sr="svn revert"
 alias svu="svn update"
 
-export MAGICK_HOME=/Users/darakong/Downloads/ImageMagick-6.6.3
 export PS1="\[\e[31;1m\][\t]\[\e[37;1m\]\w$ \[\e[0m\]"
-export PATH="/Users/darakong/dev/love/bin/love.app/Contents/MacOS:/opt/local/bin:/usr/local/soylatte16-amd64-1.0.3/bin:/Users/dkong/dara:~/dev/jamplus/bin/macosxx64:~/dev/android/android-sdk-mac_86/tools:$MAGICK_HOME/bin:$PATH"
-export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
-export JAVA_HOME="/usr/local/soylatte16-amd64-1.0.3" 
-export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/Library/Frameworks/Mono.framework/Versions/2.6.4/lib/pkgconfig"
-export SVN_EDITOR="vi"
-export PYTHONPATH=$PYTHONPATH:~/lib/python
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagahad
@@ -130,3 +128,12 @@ shopt -s histappend
 
 # Whenever displaying the prompt, write the previous line to disk
 PROMPT_COMMAND='history -a'
+
+export HISTSIZE=20000
+export HISTFILESIZE=20000
+
+export PATH=~/Downloads/android-sdk-macosx/tools:/usr/local/bin:$PATH
+export ANDROID_SDK_PATH=~/Downloads/android-sdk-macosx
+export BUILDTROP_PATH=~/loyalize/Clients
+
+export NODE_PATH=/usr/local/lib/node_modules/npm:/usr/local/lib/jsctags:$NODE_PATH
