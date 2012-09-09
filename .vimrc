@@ -27,6 +27,11 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
 " 
 nnoremap <F4> :w<CR>
+nnoremap <F5> :!/Users/dkong/loyalize/Clients/bin/build-social<CR>
+nnoremap <F6> :!/Users/dkong/loyalize/Clients/bin/build-social -environment localhost -vendor vendor-localhost<CR>
+nnoremap <F7> :!/Users/dkong/loyalize/Clients/bin/build-social -environment dev -vendor vendor-dev<CR>
+nnoremap <F9> :!/Users/dkong/loyalize/Clients/bin/build-social -environment westy7 -vendor viggle -config /Users/dkong/loyalize/Clients/config/viggle-live.json.js -Dviggle-live<CR>
+"nnoremap <esc> :noh<CR><esc>
 
 " proper indentation and formatting
 filetype plugin indent on
@@ -55,6 +60,10 @@ set listchars=tab:>-,eol:$,trail:.,extends:#
 nmap <silent> <C-N> :cn<CR>zv
 nmap <silent> <C-P> :cp<CR>zv
 
+nmap <silent> ZA :wa<CR>
+nmap <silent> ZS :w<CR>
+nmap <silent> ZQ :qa<CR>
+
 :nnoremap <Leader>r :%s/\<<C-r><C-w>\>/
 :nnoremap <Leader>f :Ack "<C-r><C-w>" public
 
@@ -79,3 +88,7 @@ hi User3 ctermfg=gray ctermbg=black
 hi User4 ctermfg=white ctermbg=black
 hi User5 ctermfg=lightblue ctermbg=black
 hi User6 ctermfg=red ctermbg=black
+
+set rnu " relative line numbers
+
+set wildignore +=node_modules
