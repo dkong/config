@@ -47,7 +47,6 @@
 ###   This will override the compile-time default, which is to use
 ###   Subversion's internal diff implementation.
 # diff-cmd = diff_program (diff, gdiff, etc.)
-diff-cmd = diffmerge-svn
 ### Set diff3-cmd to the absolute path of your 'diff3' program.
 ###   This will override the compile-time default, which is to use
 ###   Subversion's internal diff3 implementation.
@@ -75,7 +74,7 @@ diff-cmd = diffmerge-svn
 ### passed to the tunnel agent as <user>@<hostname>.)  If the
 ### built-in ssh scheme were not predefined, it could be defined
 ### as:
-# ssh = $SVN_SSH ssh
+# ssh = $SVN_SSH ssh -q
 ### If you wanted to define a new 'rsh' scheme, to be used with
 ### 'svn+rsh:' URLs, you could do so as follows:
 # rsh = rsh
@@ -92,7 +91,8 @@ diff-cmd = diffmerge-svn
 ### which Subversion will ignore in its 'status' output, and
 ### while importing or adding files and directories.
 ### '*' matches leading dots, e.g. '*.rej' matches '.foo.rej'.
-global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.rej *~ #*# .#* .*.swp .DS_Store *.perspectivev3 *.pbxuser 
+# global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo
+#   *.rej *~ #*# .#* .*.swp .DS_Store
 ### Set log-encoding to the default encoding for log messages
 # log-encoding = latin1
 ### Set use-commit-times to make checkout/update/switch/revert
@@ -129,11 +129,11 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.rej
 ### 'enable-auto-props' option.
 # *.c = svn:eol-style=native
 # *.cpp = svn:eol-style=native
-# *.h = svn:eol-style=native
+# *.h = svn:keywords=Author Date Id Rev URL;svn:eol-style=native
 # *.dsp = svn:eol-style=CRLF
 # *.dsw = svn:eol-style=CRLF
 # *.sh = svn:eol-style=native;svn:executable
-# *.txt = svn:eol-style=native
+# *.txt = svn:eol-style=native;svn:keywords=Author Date Id Rev URL;
 # *.png = svn:mime-type=image/png
 # *.jpg = svn:mime-type=image/jpeg
 # Makefile = svn:eol-style=native
