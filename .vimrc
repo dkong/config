@@ -1,4 +1,6 @@
-set nu			"Line numbers on
+execute pathogen#infect()
+
+"set nu			"Line numbers on
 set nowrap		"Line wrapping off
 set incsearch	"Incremental search
 set hlsearch
@@ -23,14 +25,9 @@ syntax on
 set vb
 
 " toggle line numbers and fold column for easy copying:
-nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+"nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+nnoremap <F2> :set nornu!<CR>
 
-" 
-nnoremap <F4> :w<CR>
-nnoremap <F5> :!/Users/dkong/loyalize/Clients/bin/build-social<CR>
-nnoremap <F6> :!/Users/dkong/loyalize/Clients/bin/build-social -environment localhost -vendor vendor-localhost<CR>
-nnoremap <F7> :!/Users/dkong/loyalize/Clients/bin/build-social -environment dev -vendor vendor-dev<CR>
-nnoremap <F9> :!/Users/dkong/loyalize/Clients/bin/build-social -environment westy7 -vendor viggle -config /Users/dkong/loyalize/Clients/config/viggle-live.json.js -Dviggle-live<CR>
 "nnoremap <esc> :noh<CR><esc>
 
 " proper indentation and formatting
@@ -39,22 +36,10 @@ filetype plugin indent on
 " 
 autocmd FileType python set complete+=k~/.vim/syntax/python3.0.vim
 
-" Execute file being edited with <Shift> + e:
-"map <buffer> <S-e> :w<CR>:~/usr/bin/env python % <CR>
-"nnoremap <F6> :w<CR>:!g++ % && ./a.out<CR>
-
 syntax on
-
-":colorscheme desert 
-
-map <C-j> :FuzzyFinderTextMate<CR>
-
-set tags=./tags;
 
 set listchars=tab:>-,eol:$,trail:.,extends:#
 
-"set iskeyword-={,},[,],(,)
-"
 :set hidden
 
 nmap <silent> <C-N> :cn<CR>zv
@@ -93,3 +78,8 @@ hi User6 ctermfg=red ctermbg=black
 set rnu " relative line numbers
 
 set wildignore +=node_modules
+
+set shellpipe=>
+
+let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
+

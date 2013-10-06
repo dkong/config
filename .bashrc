@@ -8,8 +8,8 @@ alias sb="source ~/.bashrc"
 alias h="history | tail"
 alias c="clear"
 alias a="ack --smart-case"
-alias v="~/Downloads/MacVim-snapshot-64/mvim -v"
-alias vr="~/Downloads/MacVim-snapshot-64/mvim -vr"
+alias v="~/Downloads/MacVim-snapshot-70/mvim -v"
+alias vr="~/Downloads/MacVim-snapshot-70/mvim -vr"
 alias ipp='ifconfig | grep "inet 192"'
 alias s='s3cmd'
 
@@ -93,7 +93,7 @@ function ut() {
     echo
 }
 
-export PS1="$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD)\[\e[31;1m\][\t]\[\e[37;1m\]\w$ \[\e[0m\]"
+export PS1="\[\e[31;1m\][\t]\[\e[37;1m\]\w$ \[\e[0m\]"
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagahad
@@ -108,6 +108,10 @@ PROMPT_COMMAND='history -a'
 
 export HISTSIZE=20000
 export HISTFILESIZE=20000
+export HISTIGNORE="[lvc]:cdp:cdn:k:g[slcapb]:gpl:view:tmux:ls:cd *"
+export HISTCONTROL=ignoreboth
+
+source ~/.bash-git-prompt/gitprompt.sh
 
 export WORKON_HOME="$HOME/.virtualenvs"
 source /usr/local/bin/virtualenvwrapper.sh

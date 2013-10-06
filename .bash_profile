@@ -3,8 +3,8 @@ if [ -f ~/.bashrc ]; then
 fi
 
 bind '"\t":menu-complete'
+bind '"\e[Z":complete'
 
-# Setting PATH for Python 2.7
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-export PATH
+export GOROOT=/usr/local/go
+export GOPATH=~/dev/gogo
+export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:$GOROOT/bin
