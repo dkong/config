@@ -50,7 +50,7 @@ nmap <silent> ZS :w<CR>
 nmap <silent> ZQ :qa<CR>
 
 :nnoremap <Leader>r :%s/\<<C-r><C-w>\>/
-:nnoremap <Leader>f :Ack "<C-r><C-w>"
+:nnoremap <Leader>f :Ack "\b<C-r><C-w>\b"
 :nnoremap <Leader>c :%s/\<<C-r><C-w>\>//gn
 
 match Todo /\s\+$/

@@ -24,6 +24,7 @@ alias gc="git commit -v"
 alias gl="git log"
 alias glf="git log --follow"
 alias gll='git log --pretty=format:"%Cred%h%Creset %C(white)%ad%Creset | %s %C(cyan)[%an]%Creset" --date=local'
+alias gls="git log --summary"
 alias ga="git add"
 alias gp="git push origin HEAD"
 alias gu="git reset HEAD"
@@ -93,7 +94,7 @@ function ut() {
     echo
 }
 
-export PS1="\[\e[31;1m\][\t]\[\e[37;1m\]\w$ \[\e[0m\]"
+export PS1="\[\e[31;1m\][\t|\h]\[\e[37;1m\]\w$ \[\e[0m\]"
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagahad
@@ -108,7 +109,7 @@ PROMPT_COMMAND='history -a'
 
 export HISTSIZE=20000
 export HISTFILESIZE=20000
-export HISTIGNORE="[lvc]:cdp:cdn:k:g[slcapb]:gpl:view:tmux:ls:cd *"
+export HISTIGNORE="[lvc]:cd[pndo]:k:g[slcapbd]?:view:tmux:ls:cd *:sb"
 export HISTCONTROL=ignoreboth
 
 source ~/.bash-git-prompt/gitprompt.sh
