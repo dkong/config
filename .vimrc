@@ -18,7 +18,7 @@ set expandtab 	"Use literal tabs instead of spaces
 "Visual
 set showmatch		" Show matching brackets
 set mat=5		" Bracket blinking
-set background=dark
+"set background=dark
 syntax on
 
 "Dara added
@@ -82,4 +82,8 @@ set wildignore +=node_modules
 set shellpipe=>
 
 let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
+let g:CommandTTraverseSCM   = "pwd"
 
+colorscheme desert
+
+let python_highlight_all = 1

@@ -1,20 +1,21 @@
 source ~/.git-completion.bash
 
 alias ls="ls -G"
-alias l="ls -Gla"
+alias l="ls -Glaph"
 alias d="du -sh"
 alias e="exit"
 alias sb="source ~/.bashrc"
-alias h="history | tail"
 alias c="clear"
+alias cc="clear && tmux clear-history"
 alias a="ack --smart-case"
-alias v="~/Downloads/MacVim-snapshot-70/mvim -v"
-alias vr="~/Downloads/MacVim-snapshot-70/mvim -vr"
+alias v="~/Downloads/mvim -v"
 alias ipp='ifconfig | grep "inet 192"'
-alias s='s3cmd'
+alias t='tmux'
+alias p='python'
+alias rs='rsync -avu --progress'
 
 # Git shortcuts
-alias gs="git status"
+alias gs="git status --short"
 alias gsi="git ls-files --others -i --exclude-standard"
 alias gd="git diff --color"
 alias gdi="git diff --no-ext-diff --color"
@@ -36,19 +37,25 @@ alias gt="git stash"
 alias gts="git stash save"
 alias gta="git stash apply"
 alias gtl="git stash list"
-alias gm="git mergetool -y"
 alias gbl="git blame"
 alias gittags='git log --tags --simplify-by-decoration --pretty="format:%ai %d"'
 alias gitpatch='git format-patch'
 alias gsh='git show -w'
 alias gcp='git cherry-pick'
 
+alias cdd='cd ~/dev'
+alias cdl='cd ~/Downloads'
+
+
+alias curlt="curl -w '\nTime Total: %{time_total}\n'"
+
+
 function f() {
     if [ "$2" ]
     then
-        find "$2" -iname .git -prune -o -iname "$1" -print
+        find "$2" -iname .git -prune -o -iname "*$1*" -print
     else
-        find . -iname .git -prune -o -iname "$1" -print
+        find . -iname .git -prune -o -iname "*$1*" -print
     fi
 }
 
@@ -84,17 +91,45 @@ function lt() {
     echo
 }
 
-function et() {
-    perl -e "print scalar(localtime($1 + 10800))"
-    echo
-}
-
 function ut() {
     perl -e "print scalar(gmtime($1))"
     echo
 }
 
-export PS1="\[\e[31;1m\][\t|\h]\[\e[37;1m\]\w$ \[\e[0m\]"
+function plt() {
+    perl -e "print scalar(localtime($1 / 10000000))"
+    echo
+}
+
+function put() {
+    perl -e "print scalar(gmtime($1 / 10000000))"
+    echo
+}
+
+function mlt() {
+    perl -e "print scalar(localtime($1 / 1000000))"
+    echo
+}
+
+function mut() {
+    perl -e "print scalar(gmtime($1 / 1000000))"
+    echo
+}
+
+function j() {
+    curl "$1" | python -m json.tool
+}
+
+function up {
+    ups=""
+    for i in $(seq 1 $1)
+    do
+            ups=$ups"../"
+    done
+    cd $ups
+}
+
+#export PS1="\[\e[31;1m\][\t]\[\e[37;1m\]\w$ \[\e[0m\]"
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagahad
@@ -109,10 +144,28 @@ PROMPT_COMMAND='history -a'
 
 export HISTSIZE=20000
 export HISTFILESIZE=20000
-export HISTIGNORE="[lvc]:cd[pndo]:k:g[slcapbd]?:view:tmux:ls:cd *:sb"
+export HISTIGNORE="[lvct]:cc:cd[pndosa]:k:gdi:gco:gtl:gta:gpl:g[tslcapbdu]:gco .:gc .:view:tmux:ls:cd *:sb:python:workon *:wp"
 export HISTCONTROL=ignoreboth
 
-source ~/.bash-git-prompt/gitprompt.sh
+source ~/dev/bash-git-prompt/prompt-colors.sh
+source ~/dev/bash-git-prompt/git-prompt-colors.sh
+
+GIT_PROMPT_START="${Red}\t${ResetColor}"
+GIT_PROMPT_END="${White}${PathShort}${ResetColor}$ "
+
+source ~/dev/bash-git-prompt/gitprompt.sh
 
 export WORKON_HOME="$HOME/.virtualenvs"
 source /usr/local/bin/virtualenvwrapper.sh
+
+export AWS_CONFIG_FILE=~/.aws/config
+
+# reverse reverse i-search
+#stty -ixon
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
+PERL_MB_OPT="--install_base \"/Users/dara/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/dara/perl5"; export PERL_MM_OPT;
