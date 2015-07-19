@@ -148,10 +148,10 @@ export HISTIGNORE="[lvct]:cc:cd[pndosa]:k:gdi:gco:gtl:gta:gpl:g[tslcapbdu]:gco .
 export HISTCONTROL=ignoreboth
 
 source ~/dev/bash-git-prompt/prompt-colors.sh
-source ~/dev/bash-git-prompt/git-prompt-colors.sh
 
+GIT_PROMPT_LEADING_SPACE=0
 GIT_PROMPT_START="${Red}\t${ResetColor}"
-GIT_PROMPT_END="${White}${PathShort}${ResetColor}$ "
+GIT_PROMPT_END="${White}\w${ResetColor}$ "
 
 source ~/dev/bash-git-prompt/gitprompt.sh
 
