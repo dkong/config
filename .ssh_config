@@ -1,2 +1,9 @@
 ControlMaster auto
-ControlPath /tmp/ssh_mux_%h_%p_%r
+ControlPath ~/.ssh/control:%h:%p:%r
+StrictHostKeyChecking no
+
+Host *
+User dara
+
+host vagrant.*
+ForwardAgent yes
