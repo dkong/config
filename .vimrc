@@ -29,6 +29,8 @@ set vb
 nnoremap <F2> :set nornu!<CR>
 
 "nnoremap <esc> :noh<CR><esc>
+noremap <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
 
 " proper indentation and formatting
 filetype plugin indent on
@@ -77,13 +79,16 @@ hi User6 ctermfg=red ctermbg=black
 
 set rnu " relative line numbers
 
-set wildignore +=node_modules
+set wildignore +=*/node_modules/*
 
 set shellpipe=>
 
 let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
 let g:CommandTTraverseSCM   = "pwd"
+let g:CommandTFileScanner   = "find"
 
 colorscheme desert
 
 let python_highlight_all = 1
+
+"set paste

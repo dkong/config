@@ -4,7 +4,23 @@
 	name = Dara Kong
 	email = darakong@gmail.com
 [color]
-	diff = auto
+	#diff = auto
 	status = auto
 	branch = auto
 	ui = true
+[color "diff"]
+    meta = yellow bold
+    commit = green bold
+    frag = magenta bold
+    old = red bold
+    new = white bold
+    whitespace = red reverse
+[core]
+	excludesfile = /Users/darakong/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
