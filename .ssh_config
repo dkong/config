@@ -2,11 +2,34 @@ ControlMaster auto
 ControlPath ~/.ssh/control:%h:%p:%r
 StrictHostKeyChecking no
 
+host vagrant.*
+ForwardAgent yes
+
+Host localhost
+ForwardAgent yes
+
+host *.pubnub.com
+IdentityFile ~/.ssh/id_rsa.pubnub
+IdentityFile ~/.ssh/pubnub-2017-q1.key
+IdentityFile ~/.ssh/pubnub-2016-q2.key
+StrictHostKeyChecking no
+ForwardAgent yes
+
+host *.compute.amazonaws.com
+IdentityFile ~/.ssh/id_rsa.pubnub
+IdentityFile ~/.ssh/pubnub-2017-q1.key
+IdentityFile ~/.ssh/pubnub-2016-q2.key
+StrictHostKeyChecking no
+ForwardAgent yes
+
+host *.ps.pn
+IdentityFile ~/.ssh/id_rsa.pubnub
+IdentityFile ~/.ssh/pubnub-2017-q1.key
+IdentityFile ~/.ssh/pubnub-2016-q2.key
+StrictHostKeyChecking no
+ForwardAgent yes
+
 Host *
-  # In Sierra, run `ssh-add -K ~/.ssh/id_rsa` first
   UseKeychain yes
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_rsa
-
-host vagrant.*
-ForwardAgent yes

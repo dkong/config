@@ -57,7 +57,11 @@ alias gist='gist -p'
 
 alias vu='vagrant up'
 alias vs='vagrant ssh'
-alias vc='vagrant ssh-config'
+alias vh='vagrant halt'
+
+function vc() {
+    vagrant ssh-config $1 | egrep -i "hostname|user|port|IdentityFile"
+}
 
 function sshu() {
     ssh ubuntu@$1 -i ~/.ssh/pubnub-2017-q1.key -A $2
@@ -152,6 +156,11 @@ function up {
     cd $ups
 }
 
+function setaws {
+    export AWS_ACCESS_KEY_ID=`grep $1 ~/.aws/credentials -A2 | grep aws_access_key_id | awk {'print $3'}`
+    export AWS_SECRET_ACCESS_KEY=`grep $1 ~/.aws/credentials -A2 | grep aws_secret_access_key | awk {'print $3'}`
+}
+
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagahad
 
@@ -167,7 +176,6 @@ export HISTSIZE=20000
 export HISTFILESIZE=20000
 export HISTIGNORE="[lvct]:cc:cd[pndosa]:k:gdi:gco:gtl:gta:gpl:g[tslcapbdu]:gco .:gc .:view:tmux:ls:cd -:sb:python:wp"
 export HISTCONTROL=ignoreboth
-
 
 export WORKON_HOME="$HOME/.virtualenvs"
 source /usr/local/bin/virtualenvwrapper.sh
@@ -186,6 +194,7 @@ if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
     source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
+# Auto-complete ssh/scp for known connections
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" scp
 complete -d cd
