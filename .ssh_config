@@ -3,7 +3,10 @@ ControlPath ~/.ssh/control:%h:%p:%r
 StrictHostKeyChecking no
 
 Host *
-User dara
+  # In Sierra, run `ssh-add -K ~/.ssh/id_rsa` first
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_rsa
 
 host vagrant.*
 ForwardAgent yes

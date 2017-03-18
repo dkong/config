@@ -1,5 +1,3 @@
-source ~/.git-completion.bash
-
 alias l="ls -Glaph"
 alias d="du -sh"
 alias e="exit"
@@ -7,7 +5,7 @@ alias sb="source ~/.bashrc"
 alias c="clear"
 alias cc="clear && tmux clear-history"
 alias a="ack --smart-case"
-alias v="~/Downloads/mvim -v"
+alias v="vi"
 alias t='tmux'
 alias p='python'
 alias rs='rsync -avu --progress'
@@ -170,13 +168,6 @@ export HISTFILESIZE=20000
 export HISTIGNORE="[lvct]:cc:cd[pndosa]:k:gdi:gco:gtl:gta:gpl:g[tslcapbdu]:gco .:gc .:view:tmux:ls:cd -:sb:python:wp"
 export HISTCONTROL=ignoreboth
 
-source ~/dev/bash-git-prompt/prompt-colors.sh
-
-GIT_PROMPT_LEADING_SPACE=0
-GIT_PROMPT_START="${Red}\t${ResetColor}"
-GIT_PROMPT_END="${White}\w${ResetColor}$ "
-
-source ~/dev/bash-git-prompt/gitprompt.sh
 
 export WORKON_HOME="$HOME/.virtualenvs"
 source /usr/local/bin/virtualenvwrapper.sh
@@ -185,6 +176,14 @@ export AWS_CONFIG_FILE=~/.aws/config
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
+fi
+
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+    GIT_PROMPT_THEME=Custom
+    GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
+
+    __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
