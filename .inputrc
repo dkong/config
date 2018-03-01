@@ -1,4 +1,7 @@
+# Case-insensitive path completion
 set completion-ignore-case On
 
+# Readline setting
 set editing-mode vi
+# Readline setting - redundant?
 set keymap vi-insert

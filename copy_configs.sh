@@ -1,13 +1,11 @@
-filenames=".bash_profile .bashrc .inputrc .vimperatorrc .vimrc .gitconfig"
+filenames=".bash_profile .bashrc .inputrc .vimrc .gitconfig .tmux.conf .tmux_programming.conf"
 
-for filename in $filenames 
+for filename in $filenames
 do
 	cp ~/$filename $filename
 done
 
-cp ~/.vim/after/ftplugin/* .vim/after/ftplugin/
-
-cp ~/.subversion/config .subversion/config
+cp ~/.ssh/config .ssh_config
 
 if [ "$1" = "-c" ]
 then

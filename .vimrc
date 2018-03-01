@@ -80,6 +80,7 @@ hi User6 ctermfg=red ctermbg=black
 set rnu " relative line numbers
 
 set wildignore +=*/node_modules/*
+set wildignore +=*/.nyc_output/*
 
 set shellpipe=>
 
@@ -92,3 +93,7 @@ colorscheme desert
 let python_highlight_all = 1
 
 "set paste
+"
+set clipboard=unnamed
+
+set rtp+=/usr/local/opt/fzf

@@ -29,6 +29,12 @@ IdentityFile ~/.ssh/pubnub-2016-q2.key
 StrictHostKeyChecking no
 ForwardAgent yes
 
+host gitlab.com
+IdentityFile ~/.ssh/id_rsa.gitlab
+StrictHostKeyChecking no
+ForwardAgent yes
+RSAAuthentication yes
+
 Host *
   UseKeychain yes
   AddKeysToAgent yes

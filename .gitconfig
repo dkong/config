@@ -4,9 +4,10 @@
 	name = Dara Kong
 	email = darakong@gmail.com
 [color]
-	#diff = auto
+	diff = auto
 	status = auto
 	branch = auto
+	interactive = auto
 	ui = true
 [color "diff"]
     meta = yellow bold
