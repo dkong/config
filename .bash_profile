@@ -6,6 +6,6 @@ bind '"\t":menu-complete'
 bind '"\e[Z":complete'
 
 export GOPATH=$HOME/dev/gowork
-export PATH=/usr/local/bin:/usr/local/go/bin:/Users/dara/pubnub/code/macventory/bin:~/dev/bin:/Users/dara/dev/bin:/usr/local/opt/curl/bin:/usr/local/opt/python/libexec/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/go/bin:~/dev/bin:/Users/dara/dev/bin:/usr/local/opt/curl/bin:/usr/local/opt/python/libexec/bin:$PATH
 
 source /usr/local/bin/virtualenvwrapper.sh

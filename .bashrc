@@ -45,17 +45,6 @@ alias gcp='git cherry-pick'
 alias cdd='cd ~/dev'
 alias cdl='cd ~/Downloads'
 
-# Pubnub
-alias cdp='cd ~/pubnub/code'
-alias cdb='cd ~/pubnub/code/blocks'
-alias cds='cd ~/pubnub/code/pubnub-presence'
-alias cdpp='cd ~/pubnub/code/pubnub-push'
-alias cda='cd ~/pubnub/code/pubnub-deploy/provisioning'
-alias cdv='cd ~/pubnub/code/pubnub-deploy/vagrant-boxes/pubnub'
-alias cdc='cd ~/pubnub/code/pn-charts/incubator'
-alias wp='workon pubnub'
-alias ws='workon presence'
-
 alias ssh_shell='ssh shell1.ibm-sjc-1.ps.pn -A'
 alias ssh_shell2='ssh shell2.ibm-sjc-1.ps.pn -A'
 alias curlt="curl -w '\nTime Total: %{time_total}\n'"
@@ -68,31 +57,6 @@ alias vh='vagrant halt'
 
 function vc() {
     vagrant ssh-config $1 | egrep -i "hostname|user|port|IdentityFile"
-}
-
-function sshu() {
-    ssh ubuntu@$1 -i ~/.ssh/pubnub-2017-q1.key -A $2
-}
-
-function sshu2() {
-    ssh ubuntu@$1 -i ~/.ssh/pubnub-2016-q2.key -A $2
-}
-
-function sshu3() {
-    ssh ubuntu@$1 -i ~/.ssh/pubnub-prod.key -A $2
-}
-
-
-function scpu() {
-    scp -C -i ~/.ssh/pubnub-2017-q1.key ubuntu@$1 $2
-}
-
-function ip() {
-    ack $1 ~/pubnub/code/pubnub-deploy/provisioning/regions
-}
-
-function generate_hosts() {
-    echo $1{$2..$3}.$4.pubnub.com | sed 's/ /,/g'
 }
 
 function f() {
@@ -143,13 +107,13 @@ function ut() {
     echo
 }
 
-# pubnub tt to localtime
+# tt to localtime
 function plt() {
     perl -e "print scalar(localtime($1 / 10000000))"
     echo
 }
 
-# pubnub tt to utc
+# tt to utc
 function put() {
     perl -e "print scalar(gmtime($1 / 10000000))"
     echo
