@@ -3,26 +3,23 @@ alias e="exit"
 alias sb="source ~/.bashrc"
 alias c="clear"
 alias a="ack --smart-case"
-alias v="vi"
+alias v="vim"
 alias t='tmux'
 alias p='python'
-alias rs='rsync -avu --progress'
+
+alias myip="curl https://ifconfig.me; echo; echo"
 
 alias k='kubectl'
-alias kd='kubectl --namespace default'
-alias kp='kubectl --namespace pn-functions'
-alias ko='kubectl --namespace observability'
-alias m='minikube'
-alias md='minikube dashboard'
-alias h='helm'
+alias kk='k9s --logoless'
+alias kp='k9s --logoless -n presence'
+alias ko='k9s --logoless -n objects'
+
 alias d='docker'
 alias dr='docker run --rm -ti'
-alias dm='docker-machine'
 
 # Git shortcuts
 alias gs="git status --short"
 alias gd="git diff --color"
-alias gdi="git diff --color"
 alias gdd="git diff --cached --color"
 alias gc="git commit -v"
 alias gl="git log"
@@ -32,32 +29,19 @@ alias gp="git push origin HEAD"
 alias gu="git reset HEAD"
 alias gco="git checkout"
 alias gpl="git pull --rebase"
-alias gb="git branch"
+alias gb="git branch --sort=-committerdate"
 alias gr="git checkout -p --"
 alias gt="git stash"
 alias gta="git stash apply"
 alias gbl="git blame"
 alias gtt='git log --tags --simplify-by-decoration --pretty="format:%ai %d"'
-alias gitpatch='git format-patch'
 alias gsh='git show -w'
 alias gcp='git cherry-pick'
+alias glp='git log -p --all -S'
 
 alias cdd='cd ~/dev'
-alias cdl='cd ~/Downloads'
 
-alias ssh_shell='ssh shell1.ibm-sjc-1.ps.pn -A'
-alias ssh_shell2='ssh shell2.ibm-sjc-1.ps.pn -A'
-alias curlt="curl -w '\nTime Total: %{time_total}\n'"
-
-alias gist='gist -p'
-
-alias vu='vagrant up'
-alias vs='vagrant ssh'
-alias vh='vagrant halt'
-
-function vc() {
-    vagrant ssh-config $1 | egrep -i "hostname|user|port|IdentityFile"
-}
+alias nocolors="sed $'s,[\x01-\x1F\x7F][[0-9;]*[a-zA-Z],,g'"
 
 function f() {
     if [ "$2" ]
@@ -95,6 +79,10 @@ function glag() {
     fi
 }
 
+function git-release() {
+    git tag -a "$1" -m ":arrow_up: $1" && git push origin "$1"
+}
+
 # epoch to localtime
 function lt() {
     perl -e "print scalar(localtime($1))"
@@ -107,13 +95,13 @@ function ut() {
     echo
 }
 
-# tt to localtime
+# pn tt to localtime
 function plt() {
     perl -e "print scalar(localtime($1 / 10000000))"
     echo
 }
 
-# tt to utc
+# pn tt to utc
 function put() {
     perl -e "print scalar(gmtime($1 / 10000000))"
     echo
@@ -121,16 +109,15 @@ function put() {
 
 # milliseconds to localtime
 function mlt() {
-    perl -e "print scalar(localtime($1 / 1000000))"
+    perl -e "print scalar(localtime($1 / 1000))"
     echo
 }
 
 # milliseconds to utc
 function mut() {
-    perl -e "print scalar(gmtime($1 / 1000000))"
+    perl -e "print scalar(gmtime($1 / 1000))"
     echo
 }
-
 
 function up {
     ups=""
@@ -139,16 +126,6 @@ function up {
             ups=$ups"../"
     done
     cd $ups
-}
-
-function setaws {
-    export AWS_ACCESS_KEY_ID=`grep $1 ~/.aws/credentials -A2 | grep aws_access_key_id | awk {'print $3'}`
-    export AWS_SECRET_ACCESS_KEY=`grep $1 ~/.aws/credentials -A2 | grep aws_secret_access_key | awk {'print $3'}`
-}
-
-function setdocker {
-    export DOCKER_USERNAME=`grep $1 ~/.docker/credentials -A2 | grep username | awk {'print $3'}`
-    export DOCKER_PASSWORD=`grep $1 ~/.docker/credentials -A2 | grep password | awk {'print $3'}`
 }
 
 export CLICOLOR=1
@@ -167,28 +144,36 @@ export HISTFILESIZE=20000
 export HISTIGNORE="[lvct]:cc:cd[pndosa]:k:gdi:gco:gtl:gta:gpl:g[tslcapbdu]:gco .:gc .:view:tmux:ls:cd -:sb:python:wp"
 export HISTCONTROL=ignoreboth
 
-export WORKON_HOME="$HOME/.virtualenvs"
-
-export AWS_CONFIG_FILE=~/.aws/config
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+export MY_BREW_PREFIX=/usr/local
+if [ -f $MY_BREW_PREFIX/etc/bash_completion ]; then
+    . $MY_BREW_PREFIX/etc/bash_completion
 fi
 
-if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-    GIT_PROMPT_THEME=Custom
-    GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
+if [ -f "$MY_BREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+    __GIT_PROMPT_DIR=$MY_BREW_PREFIX/opt/bash-git-prompt/share
 
-    __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
-    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+    source "$MY_BREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
+# Auto-complete ssh/scp for known connections
+complete -d cd
 
-# added by travis gem
-[ -f /Users/dara/.travis/travis.sh ] && source /Users/dara/.travis/travis.sh
+function split_lines() {
+    echo $1 | tr ',' '\n' | sed 's/^ */* /g' | sed 's/$/ -/g' | pbcopy
+}
+
+function strip_chars() {
+    sed $'s,[\x01-\x1F\x7F][[0-9;]*[a-zA-Z],,g' $1
+}
+
+RED="\[$(tput setaf 1)\]"
+GREEN="\[$(tput setaf 2)\]"
+RESET="\[$(tput sgr0)\]"
+
+PS1="${RED}\t ${GREEN}\w [\$(git symbolic-ref --short HEAD 2>/dev/null)] ${RESET}$ "
+source "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Auto-complete ssh/scp for known connections
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
-complete -d cd
+. "$HOME/.cargo/env"

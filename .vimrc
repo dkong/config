@@ -82,6 +82,7 @@ set rnu " relative line numbers
 set wildignore +=*/node_modules/*
 set wildignore +=*/.nyc_output/*
 set wildignore +=*.pyc
+set wildignore +=*/target/*
 
 set shellpipe=>
 
@@ -93,9 +94,8 @@ colorscheme desert
 
 let python_highlight_all = 1
 
-"set paste
-"
-"set clipboard=unnamed "disable system clipboard integration so vim and os x
-"use separate buffers
-
 set rtp+=/usr/local/opt/fzf
+
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+autocmd FileType terraform setlocal ts=2 sts=2 sw=2
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

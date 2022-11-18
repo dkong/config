@@ -2,19 +2,14 @@ ControlMaster auto
 ControlPath ~/.ssh/control:%h:%p:%r
 StrictHostKeyChecking no
 
-host vagrant.*
-ForwardAgent yes
-
-Host localhost
-ForwardAgent yes
-
 host gitlab.com
-IdentityFile ~/.ssh/id_rsa.gitlab
-StrictHostKeyChecking no
-ForwardAgent yes
-RSAAuthentication yes
+  IdentityFile ~/.ssh/id_rsa.gitlab
+  StrictHostKeyChecking no
+  ForwardAgent yes
 
 Host *
+  StrictHostKeyChecking no
+  IgnoreUnknown UseKeychain
   UseKeychain yes
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_rsa
